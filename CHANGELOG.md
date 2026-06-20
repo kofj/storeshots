@@ -7,10 +7,26 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Added
+- **Template gallery**. A new `/gallery` page collects community-submitted
+  starting designs. **Use template** opens one in the editor with your own
+  screenshots, icon, and credentials left untouched. A **Share to gallery**
+  action in the project menu opens a dialog to add a hosted preview image URL,
+  author, and tags, then downloads a *sanitized* template (design only — no
+  uploaded screenshots, icon, custom font, or API key). To keep the repo small,
+  images travel as hosted URLs, not committed files; cards without a preview
+  image fall back to a live palette + headline preview. Submissions are plain
+  JSON under `app/gallery/`, validated in CI. Ships with eight starter
+  templates (SaaS, game, finance, health, travel, food, fitness, education).
 - **iPad landscape mode**. Landscape was previously Android-tablet-only. Selecting
   iPad in the editor now shows a Portrait ↕ / Landscape ↔ toggle, mirroring the
   Android tablets. Landscape has its own screenshot upload slot, device frame, and
   export sizes (iPad Pro 12.9" & 11" — 2732×2048 / 2224×1668). (#6)
+
+### Changed
+- **Shared site layout**. The landing page header and footer moved into a
+  reusable `marketing` layout, so the new gallery page (and future pages) share
+  the same navigation and footer instead of duplicating them. Nav anchors now
+  resolve from any page, and Gallery was added to both the header and footer.
 
 ## [0.11.0] — 2026-06-07
 

@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "slug": "game-arcade",
+  "title": "Game / Entertainment",
+  "author": "Storeshots",
+  "authorUrl": "https://github.com/eralpozcan/storeshots",
+  "tags": ["game", "arcade", "neon"],
+  "config": {
+    "appName": "Pixel Rush",
+    "appDescription": "High-energy arcade game with endless levels.",
+    "aiBrief": "Audience: casual mobile gamers. Tone: high-energy, playful, punchy. Emphasise fun, competition, and replayability. Keep phrasing short and exciting.",
+    "features": ["100+ unique levels", "Compete with friends", "Offline mode"],
+    "colors": {
+      "primary": "#ec4899",
+      "accent": "#facc15",
+      "textDark": "#0b021a",
+      "textLight": "#ffffff",
+      "bgFrom": "#1e0036",
+      "bgTo": "#5b0066"
+    },
+    "fontFamily": "Inter",
+    "fgElements": [],
+    "copy": [
+      { "label": "HERO", "headline": "One more\nlevel. Promise." },
+      { "label": "PLAY", "headline": "Pick up.\nLose hours." },
+      { "label": "LEVELS", "headline": "100+ ways\nto win." },
+      { "label": "FRIENDS", "headline": "Race friends.\nWreck their score." },
+      { "label": "REWARDS", "headline": "Daily streaks.\nReal payoff." },
+      { "label": "OFFLINE", "headline": "No wifi?\nNo problem." },
+      { "label": "SKINS", "headline": "Unlock looks.\nFlex hard." },
+      { "label": "LEADER", "headline": "Climb the\nleaderboard." },
+      { "label": "NEW", "headline": "New levels\nevery week." },
+      { "label": "TRUST", "headline": "Built for\nplayers." }
+    ],
+    "copyByLocale": {},
+    "locale": "en",
+    "selectedLocales": ["en"]
+  }
+}

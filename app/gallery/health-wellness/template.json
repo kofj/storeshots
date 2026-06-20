@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "slug": "health-wellness",
+  "title": "Health / Wellness",
+  "author": "Storeshots",
+  "authorUrl": "https://github.com/eralpozcan/storeshots",
+  "tags": ["health", "wellness", "calm"],
+  "config": {
+    "appName": "Stillwell",
+    "appDescription": "Warm, judgment-free habit and wellness coaching.",
+    "aiBrief": "Audience: people building healthier habits. Tone: warm, encouraging, judgment-free. Emphasise small steps, steady progress, and consistency. Keep it calm and supportive.",
+    "features": ["Gentle reminders", "Track real progress", "No guilt, ever"],
+    "colors": {
+      "primary": "#16a34a",
+      "accent": "#fb923c",
+      "textDark": "#0a2e1a",
+      "textLight": "#ffffff",
+      "bgFrom": "#052e1a",
+      "bgTo": "#166534"
+    },
+    "fontFamily": "DM Sans",
+    "fgElements": [],
+    "copy": [
+      { "label": "HERO", "headline": "Small steps,\nbig wins." },
+      { "label": "DAILY", "headline": "Five minutes\na day." },
+      { "label": "PROGRESS", "headline": "See how\nfar you came." },
+      { "label": "COACH", "headline": "Your coach,\nin your pocket." },
+      { "label": "MIND", "headline": "Quiet the\nnoise." },
+      { "label": "SLEEP", "headline": "Sleep deeper.\nWake stronger." },
+      { "label": "HABITS", "headline": "Habits that\nstick." },
+      { "label": "COMMUNITY", "headline": "You're not\nalone here." },
+      { "label": "FLEX", "headline": "No guilt.\nNo streaks lost." },
+      { "label": "TRUST", "headline": "Built with\nclinicians." }
+    ],
+    "copyByLocale": {},
+    "locale": "en",
+    "selectedLocales": ["en"]
+  }
+}

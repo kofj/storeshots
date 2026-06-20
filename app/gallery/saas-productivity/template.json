@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "slug": "saas-productivity",
+  "title": "SaaS / Productivity",
+  "author": "Storeshots",
+  "authorUrl": "https://github.com/eralpozcan/storeshots",
+  "tags": ["saas", "productivity", "blue"],
+  "config": {
+    "appName": "Flowstate",
+    "appDescription": "Calm, time-saving productivity for busy teams.",
+    "aiBrief": "Audience: busy professionals and teams. Tone: calm, confident, efficiency-focused. Emphasise time saved, automation, and reliability. Avoid hype and buzzwords.",
+    "features": ["Saves hours every week", "Works on every device", "Built for teams"],
+    "colors": {
+      "primary": "#2563eb",
+      "accent": "#f97316",
+      "textDark": "#0f172a",
+      "textLight": "#ffffff",
+      "bgFrom": "#0f172a",
+      "bgTo": "#1e3a8a"
+    },
+    "fontFamily": "Inter",
+    "fgElements": [],
+    "copy": [
+      { "label": "HERO", "headline": "Get back\nyour week." },
+      { "label": "FOCUS", "headline": "Cut the busywork.\nKeep the work." },
+      { "label": "TEAM", "headline": "Everyone in sync.\nNo Slack pings." },
+      { "label": "SECURE", "headline": "SOC 2 ready.\nFor real." },
+      { "label": "FAST", "headline": "Loads in\nunder a second." },
+      { "label": "AUTOMATE", "headline": "Repeat tasks?\nAutomate them." },
+      { "label": "INSIGHT", "headline": "See where\ntime goes." },
+      { "label": "CONNECT", "headline": "Plays nice\nwith your stack." },
+      { "label": "GROW", "headline": "Scales as\nyou grow." },
+      { "label": "TRUST", "headline": "Made for\nbuilders." }
+    ],
+    "copyByLocale": {},
+    "locale": "en",
+    "selectedLocales": ["en"]
+  }
+}

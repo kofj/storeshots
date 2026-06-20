@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "slug": "fitness-tracker",
+  "title": "Fitness / Tracker",
+  "author": "Storeshots",
+  "authorUrl": "https://github.com/eralpozcan/storeshots",
+  "tags": ["fitness", "tracker", "energy"],
+  "config": {
+    "appName": "Repsly",
+    "appDescription": "Workouts, streaks, and progress that keep you moving.",
+    "aiBrief": "Audience: people getting fitter at home or the gym. Tone: high-energy, motivating, no-nonsense. Emphasise momentum, streaks, and visible progress. Keep it punchy and bold.",
+    "features": ["Guided workouts", "Track every rep", "Build real streaks"],
+    "colors": {
+      "primary": "#84cc16",
+      "accent": "#f97316",
+      "textDark": "#1a2e05",
+      "textLight": "#ffffff",
+      "bgFrom": "#0c0a09",
+      "bgTo": "#1c1917"
+    },
+    "fontFamily": "Space Grotesk",
+    "fgElements": [],
+    "copy": [
+      { "label": "HERO", "headline": "Show up.\nGet strong." },
+      { "label": "GUIDED", "headline": "Workouts that\nfit your day." },
+      { "label": "TRACK", "headline": "Every rep\ncounts." },
+      { "label": "STREAK", "headline": "Build a\nstreak you keep." },
+      { "label": "PROGRESS", "headline": "Watch yourself\nget stronger." },
+      { "label": "HOME", "headline": "No gym?\nNo excuse." },
+      { "label": "PLAN", "headline": "Plans built\nfor you." },
+      { "label": "RECOVER", "headline": "Train hard.\nRecover smart." },
+      { "label": "COMMUNITY", "headline": "Push with\nthe crew." },
+      { "label": "TRUST", "headline": "Built by\nathletes." }
+    ],
+    "copyByLocale": {},
+    "locale": "en",
+    "selectedLocales": ["en"]
+  }
+}

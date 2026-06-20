@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "slug": "education-learning",
+  "title": "Education / Learning",
+  "author": "Storeshots",
+  "authorUrl": "https://github.com/eralpozcan/storeshots",
+  "tags": ["education", "learning", "academic"],
+  "config": {
+    "appName": "Lumina",
+    "appDescription": "Bite-size lessons that fit any schedule.",
+    "aiBrief": "Audience: lifelong learners and students. Tone: encouraging, clear, credible. Emphasise small daily lessons, retention, and real progress. Avoid jargon and pressure.",
+    "features": ["5-minute lessons", "Learn at your pace", "Remember more"],
+    "colors": {
+      "primary": "#4f46e5",
+      "accent": "#f59e0b",
+      "textDark": "#1e1b4b",
+      "textLight": "#ffffff",
+      "bgFrom": "#1e1b4b",
+      "bgTo": "#3730a3"
+    },
+    "fontFamily": "Lora",
+    "fgElements": [],
+    "copy": [
+      { "label": "HERO", "headline": "Learn a little.\nEvery day." },
+      { "label": "BITE", "headline": "Five-minute\nlessons." },
+      { "label": "PACE", "headline": "Go at your\nown pace." },
+      { "label": "REMEMBER", "headline": "Built to make\nit stick." },
+      { "label": "PATHS", "headline": "Paths for\nevery goal." },
+      { "label": "QUIZ", "headline": "Quick quizzes.\nReal recall." },
+      { "label": "OFFLINE", "headline": "Study with\nno wifi." },
+      { "label": "STREAK", "headline": "Keep your\nstreak alive." },
+      { "label": "PROGRESS", "headline": "See how\nfar you've come." },
+      { "label": "TRUST", "headline": "Made with\neducators." }
+    ],
+    "copyByLocale": {},
+    "locale": "en",
+    "selectedLocales": ["en"]
+  }
+}
