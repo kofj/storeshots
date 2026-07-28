@@ -6,6 +6,8 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.12.0] — 2026-07-28
+
 ### Added
 - **Template gallery**. A new `/gallery` page collects community-submitted
   starting designs. **Use template** opens one in the editor with your own
@@ -27,6 +29,14 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   reusable `marketing` layout, so the new gallery page (and future pages) share
   the same navigation and footer instead of duplicating them. Nav anchors now
   resolve from any page, and Gallery was added to both the header and footer.
+- **Claude models updated to the 5 tier**. Opus 4.7 → Opus 5, Sonnet 4.6 →
+  Sonnet 5 (new default). Haiku 4.5 is unchanged — it was already current.
+- **Simplified AI provider/model picker**. Model choice in the editor sidebar
+  now sits behind a closed-by-default disclosure that shows the current pick
+  (e.g. "Model (Sonnet 5)"), so the default step no longer front-loads a
+  dropdown plus six quick-pick chips. Redundant vision/free-model chip rows
+  and info boxes were trimmed to one line each; still expandable for anyone
+  who wants to switch tier or provider model.
 
 ## [0.11.0] — 2026-06-07
 

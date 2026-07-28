@@ -93,7 +93,7 @@ export default defineEventHandler(async (event) => {
   }
   const apiKey = ensureString(body.apiKey, 'apiKey', 512)
   const openrouterModel = ensureString(body.openrouterModel, 'openrouterModel', 128, false)
-  const claudeModel = ensureString(body.claudeModel, 'claudeModel', 64, false) || 'claude-sonnet-4-6'
+  const claudeModel = ensureString(body.claudeModel, 'claudeModel', 64, false) || 'claude-sonnet-5'
   const locale = ensureString(body.locale ?? 'en', 'locale', 8, false)
   const baseCopy = parseSlides(body.baseCopy)
   const count = Math.min(MAX_COUNT, Math.max(1, Number(body.count ?? 3)))
@@ -125,7 +125,7 @@ ${JSON.stringify(baseCopy, null, 2)}`
     raw = res.content?.[0]?.text ?? ''
   }
   else {
-    const model = openrouterModel || 'anthropic/claude-sonnet-4.6'
+    const model = openrouterModel || 'anthropic/claude-sonnet-5'
     const res = await $fetch<any>('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {

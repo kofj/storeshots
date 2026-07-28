@@ -108,6 +108,16 @@ function updateAi(patch: Partial<UserConfig['ai']>) {
   emit('change', { ai: { ...props.config.ai, ...patch } })
 }
 
+const CLAUDE_MODEL_LABELS: Record<string, string> = {
+  'claude-opus-5': 'Opus 5',
+  'claude-sonnet-5': 'Sonnet 5',
+  'claude-haiku-4-5-20251001': 'Haiku 4.5',
+}
+const currentModelLabel = computed(() => {
+  if (props.config.ai.provider === 'openrouter') return props.config.ai.openrouterModel || 'default'
+  return CLAUDE_MODEL_LABELS[props.config.ai.claudeModel] ?? props.config.ai.claudeModel
+})
+
 function updateCopy(idx: number, field: keyof SlideCopy, value: string) {
   const copy = [...props.config.copy]
   copy[idx] = { ...copy[idx]!, [field]: value } as SlideCopy
@@ -917,73 +927,49 @@ function handleReset() {
           @update:model-value="updateAi({ provider: $event as 'claude' | 'openrouter' })"
         />
       </div>
-      <template v-if="config.ai.provider === 'openrouter'">
-        <div>
-          <label class="block text-xs font-semibold text-gray-700 mb-1">Model</label>
-          <UInput
-            :model-value="config.ai.openrouterModel"
-            size="sm"
-            placeholder="anthropic/claude-sonnet-4.6"
-            class="w-full"
-            @update:model-value="updateAi({ openrouterModel: $event as string })"
-          />
+      <!-- Model picker: collapsed by default (Sonnet 5 default covers most users),
+           left open for anyone who wants to switch tier/provider model. -->
+      <details class="group rounded-lg border border-gray-200 open:border-gray-300">
+        <summary class="cursor-pointer list-none flex items-center justify-between px-2 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900">
+          <span>Model <span class="font-normal text-gray-400">({{ currentModelLabel }})</span></span>
+          <UIcon name="i-lucide-chevron-down" class="size-3.5 text-gray-400 transition-transform group-open:rotate-180" />
+        </summary>
+        <div class="px-2 pb-2 pt-1 space-y-2">
+          <template v-if="config.ai.provider === 'openrouter'">
+            <UInput
+              :model-value="config.ai.openrouterModel"
+              size="sm"
+              placeholder="anthropic/claude-sonnet-5"
+              class="w-full"
+              @update:model-value="updateAi({ openrouterModel: $event as string })"
+            />
+            <p class="text-[10px] text-gray-400 leading-relaxed">
+              👁 Quick pick (vision-capable):
+              <span class="text-gray-500 cursor-pointer hover:text-blue-500" @click="updateAi({ openrouterModel: 'google/gemini-2.5-flash' })">gemini-2.5-flash</span>,
+              <span class="text-gray-500 cursor-pointer hover:text-blue-500" @click="updateAi({ openrouterModel: 'anthropic/claude-sonnet-5' })">claude-sonnet-5</span>,
+              <span class="text-gray-500 cursor-pointer hover:text-blue-500" @click="updateAi({ openrouterModel: 'google/gemma-4-31b-it:free' })">gemma-4:free</span>
+            </p>
+          </template>
+          <template v-else>
+            <USelect
+              :model-value="config.ai.claudeModel"
+              :items="[
+                { label: 'Claude Opus 5 — most capable', value: 'claude-opus-5' },
+                { label: 'Claude Sonnet 5 — balanced (default)', value: 'claude-sonnet-5' },
+                { label: 'Claude Haiku 4.5 — fast & cheap', value: 'claude-haiku-4-5-20251001' },
+              ]"
+              value-key="value"
+              label-key="label"
+              size="sm"
+              class="w-full"
+              @update:model-value="updateAi({ claudeModel: $event as string })"
+            />
+            <p class="text-[10px] text-gray-400 leading-relaxed">
+              👁 All three see your screenshots. Opus for best quality, Haiku to save cost.
+            </p>
+          </template>
         </div>
-        <!-- Vision-capable models (recommended) -->
-        <div class="bg-amber-50 border border-amber-200 rounded-lg p-2">
-          <p class="text-[10px] text-amber-700 font-semibold mb-1">👁 Vision models (recommended)</p>
-          <p class="text-[10px] text-amber-600 leading-relaxed mb-1.5">
-            These models can analyze your screenshots for better, more accurate headlines.
-          </p>
-          <div class="flex flex-wrap gap-1">
-            <span
-              class="text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded cursor-pointer hover:bg-amber-200 transition-colors"
-              @click="updateAi({ openrouterModel: 'google/gemini-2.5-flash' })"
-            >gemini-2.5-flash</span>
-            <span
-              class="text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded cursor-pointer hover:bg-amber-200 transition-colors"
-              @click="updateAi({ openrouterModel: 'anthropic/claude-sonnet-4.6' })"
-            >claude-sonnet-4.6</span>
-            <span
-              class="text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded cursor-pointer hover:bg-amber-200 transition-colors"
-              @click="updateAi({ openrouterModel: 'openai/gpt-4o-mini' })"
-            >gpt-4o-mini</span>
-          </div>
-        </div>
-        <!-- Free vision-capable models -->
-        <p class="text-[10px] text-gray-400 leading-relaxed">
-          Free (vision):
-          <span class="text-gray-500 cursor-pointer hover:text-blue-500" @click="updateAi({ openrouterModel: 'google/gemma-4-31b-it:free' })">gemma-4:free</span>,
-          <span class="text-gray-500 cursor-pointer hover:text-blue-500" @click="updateAi({ openrouterModel: 'nvidia/nemotron-nano-12b-v2-vl:free' })">nemotron-vl:free</span>,
-          <span class="text-gray-500 cursor-pointer hover:text-blue-500" @click="updateAi({ openrouterModel: 'moonshotai/kimi-k2.6:free' })">kimi-k2:free</span>
-        </p>
-      </template>
-      <!-- Claude model picker + info -->
-      <template v-if="config.ai.provider === 'claude'">
-        <div>
-          <label class="block text-xs font-semibold text-gray-700 mb-1">Model</label>
-          <USelect
-            :model-value="config.ai.claudeModel"
-            :items="[
-              { label: 'Claude Opus 4.7 — most capable', value: 'claude-opus-4-7' },
-              { label: 'Claude Sonnet 4.6 — balanced (default)', value: 'claude-sonnet-4-6' },
-              { label: 'Claude Haiku 4.5 — fast & cheap', value: 'claude-haiku-4-5-20251001' },
-            ]"
-            value-key="value"
-            label-key="label"
-            size="sm"
-            class="w-full"
-            @update:model-value="updateAi({ claudeModel: $event as string })"
-          />
-          <p class="mt-1 text-[10px] text-gray-400 leading-relaxed">
-            All Claude 4.x and 3.5 models support vision. Pick Opus for best quality, Haiku to save cost.
-          </p>
-        </div>
-        <div class="bg-green-50 border border-green-200 rounded-lg p-2">
-          <p class="text-[10px] text-green-700 leading-relaxed">
-            👁 <b>Vision-ready</b> — screenshots are analysed for accurate, context-aware headlines.
-          </p>
-        </div>
-      </template>
+      </details>
       <div>
         <label class="block text-xs font-semibold text-gray-700 mb-1">API key</label>
         <UInput
