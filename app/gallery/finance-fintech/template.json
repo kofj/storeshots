@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "slug": "finance-fintech",
+  "title": "Finance / Fintech",
+  "author": "Storeshots",
+  "authorUrl": "https://github.com/eralpozcan/storeshots",
+  "tags": ["finance", "fintech", "trust"],
+  "config": {
+    "appName": "Ledgerly",
+    "appDescription": "Clear, trustworthy money management with no hidden fees.",
+    "aiBrief": "Audience: everyday, money-conscious users. Tone: trustworthy, clear, reassuring. Emphasise security, transparency, and no hidden fees. Avoid financial jargon.",
+    "features": ["Bank-grade encryption", "Track every dollar", "No hidden fees"],
+    "colors": {
+      "primary": "#0f766e",
+      "accent": "#fbbf24",
+      "textDark": "#022c22",
+      "textLight": "#ffffff",
+      "bgFrom": "#022c22",
+      "bgTo": "#064e3b"
+    },
+    "fontFamily": "Inter",
+    "fgElements": [],
+    "copy": [
+      { "label": "HERO", "headline": "Money made\nclear." },
+      { "label": "SAVE", "headline": "Save without\nthinking." },
+      { "label": "TRACK", "headline": "See every\ndollar." },
+      { "label": "SECURE", "headline": "Bank-grade.\nReally." },
+      { "label": "NO FEES", "headline": "Zero hidden\nfees. Ever." },
+      { "label": "GOALS", "headline": "Hit goals\nfaster." },
+      { "label": "INVEST", "headline": "Invest with\nconfidence." },
+      { "label": "SUPPORT", "headline": "24/7 humans.\nNot bots." },
+      { "label": "GLOBAL", "headline": "Works in\n100+ countries." },
+      { "label": "TRUST", "headline": "Trusted by\nmillions." }
+    ],
+    "copyByLocale": {},
+    "locale": "en",
+    "selectedLocales": ["en"]
+  }
+}

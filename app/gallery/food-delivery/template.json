@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "slug": "food-delivery",
+  "title": "Food / Delivery",
+  "author": "Storeshots",
+  "authorUrl": "https://github.com/eralpozcan/storeshots",
+  "tags": ["food", "delivery", "appetite"],
+  "config": {
+    "appName": "Forkly",
+    "appDescription": "Hot food from local favourites, delivered fast.",
+    "aiBrief": "Audience: hungry people ordering on mobile. Tone: appetising, fast, friendly. Emphasise speed, local restaurants, and cravings satisfied. Keep it short and mouth-watering.",
+    "features": ["Delivered in 30 min", "1000+ local spots", "Live order tracking"],
+    "colors": {
+      "primary": "#dc2626",
+      "accent": "#facc15",
+      "textDark": "#450a0a",
+      "textLight": "#ffffff",
+      "bgFrom": "#7f1d1d",
+      "bgTo": "#b91c1c"
+    },
+    "fontFamily": "Montserrat",
+    "fgElements": [],
+    "copy": [
+      { "label": "HERO", "headline": "Cravings,\ndelivered." },
+      { "label": "FAST", "headline": "Hot food in\n30 minutes." },
+      { "label": "LOCAL", "headline": "1000+ spots\nnear you." },
+      { "label": "TRACK", "headline": "Watch it\non the way." },
+      { "label": "DEALS", "headline": "Daily deals.\nReal savings." },
+      { "label": "REORDER", "headline": "Favourites,\none tap." },
+      { "label": "PAY", "headline": "Split the\nbill easy." },
+      { "label": "FRESH", "headline": "Sealed fresh.\nEvery time." },
+      { "label": "LATE", "headline": "Open late.\nWe deliver." },
+      { "label": "TRUST", "headline": "Loved by\nfoodies." }
+    ],
+    "copyByLocale": {},
+    "locale": "en",
+    "selectedLocales": ["en"]
+  }
+}

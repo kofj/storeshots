@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "slug": "travel-explore",
+  "title": "Travel / Explore",
+  "author": "Storeshots",
+  "authorUrl": "https://github.com/eralpozcan/storeshots",
+  "tags": ["travel", "explore", "sunset"],
+  "config": {
+    "appName": "Wanderly",
+    "appDescription": "Plan trips, find hidden gems, and book in one place.",
+    "aiBrief": "Audience: spontaneous and planning travellers alike. Tone: warm, adventurous, inspiring. Emphasise discovery, ease of planning, and local gems. Keep it vivid and inviting.",
+    "features": ["Plan in minutes", "Offline maps", "Local hidden gems"],
+    "colors": {
+      "primary": "#f97316",
+      "accent": "#fcd34d",
+      "textDark": "#431407",
+      "textLight": "#ffffff",
+      "bgFrom": "#7c2d12",
+      "bgTo": "#c2410c"
+    },
+    "fontFamily": "Poppins",
+    "fgElements": [],
+    "copy": [
+      { "label": "HERO", "headline": "Go see\nthe world." },
+      { "label": "PLAN", "headline": "Plan a trip\nin minutes." },
+      { "label": "DISCOVER", "headline": "Find hidden\ngems nearby." },
+      { "label": "MAPS", "headline": "Offline maps.\nNo roaming." },
+      { "label": "BOOK", "headline": "Stays + flights.\nOne tap." },
+      { "label": "LOCAL", "headline": "Eat where\nlocals eat." },
+      { "label": "SAVE", "headline": "Track budget\nas you go." },
+      { "label": "SHARE", "headline": "Share routes\nwith friends." },
+      { "label": "OFFLINE", "headline": "Works with\nno signal." },
+      { "label": "TRUST", "headline": "Loved by\nexplorers." }
+    ],
+    "copyByLocale": {},
+    "locale": "en",
+    "selectedLocales": ["en"]
+  }
+}

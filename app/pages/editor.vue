@@ -27,7 +27,7 @@ const {
   config, device, orientation, sizeIdx, exporting, generating,
   ready, isTablet, canvasDims, slideConfig, sizePick,
   updateConfig, switchLocale, generateCopy, generateFullDesign,
-  exportProject, importProject,
+  exportProject, importProject, shareToGallery,
   extractColorsFromScreenshots,
   copyVariants, generateCopyVariants, applyVariant,
   getUploadedImages,
@@ -80,6 +80,20 @@ function scrollToSlide(i: number) {
 // user dismisses or applies a template the picker stays out of the way.
 const templatePickerOpen = ref(false)
 const templatesDismissed = ref(false)
+
+// Share-to-gallery dialog. Collects the submission fields — a hosted preview
+// image URL plus author/tags — then downloads the sanitized template JSON.
+const shareDialogOpen = ref(false)
+const shareForm = reactive({ author: '', authorUrl: '', tags: '', previewImage: '' })
+function submitShare() {
+  shareToGallery({
+    author: shareForm.author,
+    authorUrl: shareForm.authorUrl,
+    tags: shareForm.tags.split(',').map(s => s.trim()).filter(Boolean),
+    previewImage: shareForm.previewImage,
+  })
+  shareDialogOpen.value = false
+}
 const isFreshEditor = computed(() => {
   const c = config.value
   if (c.copy.some(s => s.headline && s.headline !== 'Your headline\nhere.')) return false
@@ -752,6 +766,12 @@ const projectMenuItems = computed(() => [
     icon: 'i-lucide-upload',
     onSelect: triggerImport,
   },
+  {
+    label: 'Share to gallery',
+    description: 'Download a sanitized template to submit by PR',
+    icon: 'i-lucide-heart-handshake',
+    onSelect: () => { shareDialogOpen.value = true },
+  },
 ])
 
 const deviceOptions: { label: string; value: Device }[] = [
@@ -768,6 +788,15 @@ const tabletOptions: { label: string; value: Device }[] = [
 
 onMounted(() => {
   ready.value = true
+  // A "Use template" click in the gallery stashes the chosen design here.
+  // Apply it through the same merge path as a project import, then bail so the
+  // first-run picker doesn't pop over the freshly loaded template.
+  const pending = sessionStorage.getItem('storeshots:apply')
+  if (pending) {
+    sessionStorage.removeItem('storeshots:apply')
+    importProject(new File([pending], 'gallery-template.json', { type: 'application/json' }))
+    return
+  }
   // First-run hint: open the template chooser unless the user already
   // started typing or dismissed it before.
   if (isFreshEditor.value && !templatesDismissed.value) {
@@ -1660,6 +1689,36 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
           >
             Start blank
           </UButton>
+        </div>
+      </template>
+    </UModal>
+
+    <!-- Share to gallery — collect submission meta, then download the JSON. -->
+    <UModal
+      v-model:open="shareDialogOpen"
+      title="Share to gallery"
+      description="Downloads a sanitized template (no uploaded screenshots, icon, custom font, or API key). Host a preview image and paste its URL below."
+    >
+      <template #body>
+        <div class="space-y-4">
+          <UFormField label="Preview image URL" help="Hosted image shown on the gallery card (https). Optional — falls back to a colour preview.">
+            <UInput v-model="shareForm.previewImage" placeholder="https://…/preview.png" class="w-full" />
+          </UFormField>
+          <UFormField label="Author" help="Your name or handle.">
+            <UInput v-model="shareForm.author" placeholder="Jane Doe" class="w-full" />
+          </UFormField>
+          <UFormField label="Author URL" help="Optional link (profile, site).">
+            <UInput v-model="shareForm.authorUrl" placeholder="https://github.com/jane" class="w-full" />
+          </UFormField>
+          <UFormField label="Tags" help="Comma-separated, e.g. saas, blue, minimal.">
+            <UInput v-model="shareForm.tags" placeholder="saas, productivity" class="w-full" />
+          </UFormField>
+        </div>
+      </template>
+      <template #footer>
+        <div class="flex justify-end gap-2 w-full">
+          <UButton color="neutral" variant="ghost" @click="shareDialogOpen = false">Cancel</UButton>
+          <UButton icon="i-lucide-download" @click="submitShare">Download template</UButton>
         </div>
       </template>
     </UModal>

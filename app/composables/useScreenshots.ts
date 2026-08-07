@@ -2,6 +2,7 @@ import type { UserConfig, Device, Orientation, SlideConfig } from '~/utils/types
 import { loadConfig, saveConfig, DEFAULT_CONFIG } from '~/utils/defaults'
 import { extractPalette } from '~/utils/color-extract'
 import { resolveFontStack } from '~/utils/fonts'
+import { sanitizeForGallery, slugify, type GalleryTemplate } from '~/utils/gallery'
 import {
   W, H, AW, AH, AT7P_W, AT7P_H, AT7L_W, AT7L_H,
   AT10P_W, AT10P_H, AT10L_W, AT10L_H, IPAD_W, IPAD_H, IPAD_L_W, IPAD_L_H, FGW, FGH,
@@ -681,6 +682,39 @@ export function useScreenshots() {
     })
   }
 
+  // Download the current design as a sanitized gallery template. Base64
+  // screenshots, icon, custom font, and credentials are stripped; only hosted
+  // image URLs survive. `meta` carries the submission fields collected in the
+  // Share dialog (author, tags, and the preview image URL).
+  function shareToGallery(meta: { author?: string; authorUrl?: string; tags?: string[]; previewImage?: string } = {}) {
+    if (import.meta.server) return
+    const slug = slugify(config.value.appName)
+    const tmpl: GalleryTemplate = {
+      schema: 1,
+      slug,
+      title: config.value.appName || 'Untitled template',
+      author: meta.author?.trim() || '',
+      ...(meta.authorUrl?.trim() ? { authorUrl: meta.authorUrl.trim() } : {}),
+      tags: meta.tags?.map(t => t.trim()).filter(Boolean) ?? [],
+      ...(meta.previewImage?.trim() ? { previewImage: meta.previewImage.trim() } : {}),
+      config: sanitizeForGallery(config.value),
+    }
+    const blob = new Blob([JSON.stringify(tmpl, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.download = `${slug}.template.json`
+    a.href = url
+    a.click()
+    URL.revokeObjectURL(url)
+    toast.add({
+      title: 'Template ready to share',
+      description: `Add ${a.download} at app/gallery/${slug}/template.json, set author + tags, then open a PR.`,
+      color: 'success',
+      icon: 'i-lucide-heart-handshake',
+      duration: 8000,
+    })
+  }
+
   async function importProject(file: File) {
     if (import.meta.server) return
     if (file.size > 50 * 1024 * 1024) {
@@ -762,6 +796,7 @@ export function useScreenshots() {
     generateFullDesign,
     exportProject,
     importProject,
+    shareToGallery,
     extractColorsFromScreenshots,
     copyVariants,
     generateCopyVariants,

@@ -87,7 +87,7 @@ export default defineNuxtConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ['html-to-image', 'jagajs/sanitize', 'marked'],
+      include: ['html-to-image', 'jagajs/sanitize', 'marked', 'jszip'],
     },
   },
   routeRules: {

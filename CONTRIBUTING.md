@@ -96,6 +96,31 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 - **Accessibility** — Keyboard navigation, screen reader support
 - **Documentation** — Guides, examples, video tutorials
 
+## Submitting a Gallery Template
+
+The [gallery](https://storeshots.app/gallery) is a community collection of
+starting designs. A submission is a **sanitized template** — your colours, copy,
+layout, and font. Uploaded screenshots, app icon, custom font, and AI
+credentials are stripped; **no binary assets are committed**. Images travel as
+hosted URLs instead, so the repo stays small.
+
+1. In the editor, build a design you're happy with.
+2. Host a preview image somewhere public (your CDN, GitHub, etc.) and copy its
+   URL — this is the main image shown on your gallery card.
+3. Open the project menu → **Share to gallery**, paste the preview image URL,
+   add your name and a few tags, then **Download template**. The downloaded
+   `<slug>.template.json` already has everything private removed.
+4. Add it at `app/gallery/<slug>/template.json` (folder name must match `slug`).
+5. Run `node scripts/validate-gallery.mjs` to check it, then open a PR.
+
+Optional: to ship demo screenshots with the template, set the device slots to
+hosted image URLs (not file uploads) before exporting — only `http(s)` image
+URLs survive sanitization. For these to export cleanly from the editor later,
+serve them with permissive CORS (`Access-Control-Allow-Origin`).
+
+CI runs the same validation on every PR that touches `app/gallery/**`. Cards
+with no preview image fall back to a live palette + headline preview.
+
 ## Code Style
 
 - **TypeScript** for all `.ts` and `.vue` files
